@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wilsafe Consultoria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5276;
+            --secondary: #2e86c1;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            color: white;
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://www.jlramos.com.br/wp-content/uploads/elementor/thumbs/equipamentos-de-seguranca-no-trabalho-capacete-oculos-luvas-qjv1li939d0ix162oxaolwk87rq26lf4njwho6kxag.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-top: 70px;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            color: white;
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #e67e22;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Diferenciais */
+        .diferenciais {
+            background-color: white;
+        }
+        
+        .diferenciais-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .diferencial-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .diferencial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .diferencial-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Missão, Visão, Valores */
+        .mvv {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+        
+        .mvv h2, .mvv h3 {
+            color: white;
+        }
+        
+        .mvv-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .mvv-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .mvv-card:hover {
+            transform: scale(1.03);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .mvv-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        /* Serviços */
+        .servicos {
+            background-color: var(--light);
+        }
+        
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .servico-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .servico-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .servico-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .servico-content {
+            padding: 1.5rem;
+        }
+        
+        .servico-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* eSocial Section */
+        .esocial {
+            background: white;
+        }
+        
+        .esocial-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .esocial-text {
+            padding-right: 2rem;
+        }
+        
+        .esocial-alert {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .esocial-image {
+            background: url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+        
+        .contact h2 {
+            color: white;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .esocial-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .esocial-text {
+                padding-right: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: var(--primary);
+                transition: all 0.3s ease;
+                padding: 2rem;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="img/3.png" alt="Wilsafe Consultoria" style="height:60px;">
+    <h1 style="color:white; font-size:1.8rem; margin:0;">Wilsafe Consultoria</h1>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#diferenciais">Diferenciais</a></li>
+                    <li><a href="#mvv">Missão, Visão e Valores</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#esocial">eSocial</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Consultoria Especializada em Segurança do Trabalho</h2>
+                <p>Oferecemos soluções completas em SST para garantir ambientes de trabalho seguros e conformidade legal para sua empresa.</p>
+                <a href="#contato" class="btn">Solicitar Orçamento</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais Section -->
+    <section id="diferenciais" class="diferenciais">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Diferenciais</h2>
+            </div>
+            <div class="diferenciais-grid">
+                <div class="diferencial-card fade-in">
+                    <i class="fas fa-eye"></i>
+                    <h3>Transparência Total</h3>
+                    <p>Relação clara e honesta com nossos clientes em todos os processos.</p>
+                </div>
+                <div class="diferencial-card fade-in">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Consultoria Técnica</h3>
+                    <p>Alta eficiência e expertise em soluções de segurança do trabalho.</p>
+                </div>
+                <div class="diferencial-card fade-in">
+                    <i class="fas fa-scale-balanced"></i>
+                    <h3>Conformidade Legal</h3>
+                    <p>Garantimos que sua empresa esteja em conformidade com todas as normas.</p>
+                </div>
+                <div class="diferencial-card fade-in">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Treinamentos</h3>
+                    <p>Capacitação completa para sua equipe com treinamentos especializados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Missão, Visão, Valores Section -->
+    <section id="mvv" class="mvv">
+        <div class="container">
+            <div class="section-title">
+                <h2>Missão, Visão e Valores</h2>
+            </div>
+            <div class="mvv-container">
+                <div class="mvv-card fade-in">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Missão</h3>
+                    <p>Promover ambientes de trabalho seguros e saudáveis, proporcionando soluções eficazes e personalizadas em segurança e saúde ocupacional para empresas e trabalhadores.</p>
+                </div>
+                <div class="mvv-card fade-in">
+                    <i class="fas fa-eye"></i>
+                    <h3>Visão</h3>
+                    <p>Ser referência em consultoria de SST, reconhecida pela excelência em serviços e pelo comprometimento com a segurança e saúde no ambiente de trabalho.</p>
+                </div>
+                <div class="mvv-card fade-in">
+                    <i class="fas fa-heart"></i>
+                    <h3>Valores</h3>
+                    <p>Comprometimento; Integridade; Empatia; Inovação; Excelência; Transparência; Humildade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços Section -->
+    <section id="servicos" class="servicos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Serviços</h2>
+            </div>
+            <div class="servicos-grid">
+                <!-- Serviços do PDF -->
+                <div class="servico-card fade-in">
+                    <div class="servico-img" style="background-image: url('https://www.projectbuilder.com.br/wp-content/themes/yootheme/cache/66/Gerenciamento-de-riscos-em-projetos-7-dicas-para-voce%CC%82-ter-sucesso-66d06c6c.webp');"></div>
+                    <div class="servico-content">
+                        <h3>PGR - Programa de Gerenciamento de Riscos</h3>
+                        <p>Identificamos e analisamos os riscos no seu local de trabalho para garantir um ambiente seguro para todos.</p>
+                    </div>
+                </div>
+                <div class="servico-card fade-in">
+                    <div class="servico-img" style="background-image: url('https://www.bmpc.com.br/wp-content/uploads/2023/05/maos-da-medica-irreconhecivel-escrevendo-no-formulario-e-digitando-no-teclado-do-laptop-2-scaled-1-2048x1367.webp');"></div>
+                    <div class="servico-content">
+                        <h3>PCMSO</h3>
+                        <p>Implementação de Controle Médico de Programas e Saúde Ocupacional.</p>
+                    </div>
+                </div>
+                <div class="servico-card fade-in">
+                    <div class="servico-img" style="background-image: url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+                    <div class="servico-content">
+                        <h3>Planos de Ação</h3>
+                        <p>Desenvolvemos estratégias para prevenção de acidentes e doenças ocupacionais.</p>
+                    </div>
+                </div>
+                <div class="servico-card fade-in">
+                    <div class="servico-img" style="background-image: url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+                    <div class="servico-content">
+                        <h3>LTCAT</h3>
+                        <p>O LTCAT é fundamental para subsidiar a concessão de aposentadoria especial aos trabalhadores expostos a agentes nocivos.</p>
+                    </div>
+                </div>
+                <div class="servico-card fade-in">
+                    <div class="servico-img" style="background-image: url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+                    <div class="servico-content">
+                        <h3>Laudo Insalubridade</h3>
+                        <p>Verificamos se os trabalhadores estão expostos a condições insalubres para garantir medidas de proteção.</p>
+                    </div>
+                </div>
+                <div class="servico-card fade-in">
+                    <div class="servico-img" style="background-image: url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+                    <div class="servico-content">
+                        <h3>Inventário de Químicos</h3>
+                        <p>Registro de produtos químicos utilizados no local de trabalho, fornecendo informações sobre seus riscos e medidas de segurança.</p>
+                    </div>
+                </div>
+                <!-- Novos serviços solicitados -->
+                <div class="servico-card fade-in">
+                    <div class="servico-img" style="background-image: url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+                    <div class="servico-content">
+                        <h3>Emissão de CLCB</h3>
+                        <p>Emissão de Certificado de Licença de Classe de Bombeiro para regularização de estabelecimentos conforme normas do Corpo de Bombeiros.</p>
+                    </div>
+                </div>
+                <div class="servico-card fade-in">
+                    <div class="servico-img" style="background-image: url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+                    <div class="servico-content">
+                        <h3>Elaboração de APR</h3>
+                        <p>Desenvolvimento de Análise Preliminar de Riscos para identificação e controle de perigos em atividades laborais.</p>
+                    </div>
+                </div>
+                <div class="servico-card fade-in">
+                    <div class="servico-img" style="background-image: url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');"></div>
+                    <div class="servico-content">
+                        <h3>Acompanhamento de Atividades</h3>
+                        <p>Monitoramento contínuo das atividades para garantir a aplicação correta das medidas de segurança implementadas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- eSocial Section -->
+    <section id="esocial" class="esocial">
+        <div class="container">
+            <div class="section-title">
+                <h2>Quem Precisa se Adequar ao eSocial?</h2>
+            </div>
+            <div class="esocial-content">
+                <div class="esocial-text">
+                    <p>Praticamente todas as empresas brasileiras que tenham funcionários precisam enviar as informações dos seus colaboradores para o eSocial, ou seja, isso inclui empresas privadas, micros e pequenas empresas, MEI (microempresário individual) com empregados e órgãos públicos.</p>
+                    
+                    <div class="esocial-alert">
+                        <h3>Se Atente ao Prazo:</h3>
+                        <p>O prazo para a entrega das informações varia de acordo com o porte da empresa e com o tipo de dado a ser enviado. Porém, ele já está em vigor e, se você está atrasado, pode já sofrer <strong>multas</strong> por perder o prazo. Portanto, entre em contato para regularização.</p>
+                    </div>
+                    
+                    <blockquote>
+                        <p>Decreto nº 8.373/2014 - "Institui o Sistema de Escrituração Digital das Obrigações Fiscais, Previdenciárias e Trabalhistas (eSocial) para simplificar e unificar a prestação de informações pelo empregador em relação aos seus empregados, abrangendo obrigações fiscais, previdenciárias e trabalhistas."</p>
+                    </blockquote>
+                </div>
+                <div class="esocial-image fade-in"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Entre em Contato</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Telefone</h3>
+                            <p>(15) 99107-2139</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>wilsafeconsultoria@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Localização</h3>
+                            <p>Sorocaba - SP</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Horário de Atendimento</h3>
+                            <p>Segunda a Sexta: 8h às 18h</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form fade-in">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>Wilsafe Consultoria</h3>
+                <p>Promovendo ambientes de trabalho seguros e saudáveis</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <p>&copy; 2023 Wilsafe Consultoria. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Obrigado por entrar em contato! Retornaremos em breve.');
+                this.reset();
+            });
+        }
+        
+        // Fade-in Animation on Scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const fadeInObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, fadeInOptions);
+        
+        fadeElements.forEach(element => {
+            fadeInObserver.observe(element);
+        });
+    </script>
+</body>
+</html>
