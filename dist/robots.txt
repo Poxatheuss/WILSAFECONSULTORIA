@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wilsafeconsultoria.com.br/sitemap.xml
